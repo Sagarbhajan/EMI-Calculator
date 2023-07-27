@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculator</title>
+    <link rel="shortcut icon" href="/Content-files/emi-favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/Content-files/EMI-Calculator.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <!-- navbar -->
+    <div id="navbar" class="navbar">
+        <div class="left-nav">
+            <nav class="navbar-sub">
+                <ul class="navbar-items" type="none">
+                    <li class="li-items">
+                        <div class="lines3">
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
+                    </li>
+                    <li class="liname"><img src="/Content-files/emi-calc-logo.png" alt="..."></li>
+                    <li class="liname" id="calcName">Calculator</li>
+                </ul>
+            </nav>
+        </div>
+        <div>
+            <div class="right-nav">
+                <div class="searchBar">
+                    <form action="https://www.google.com/search" method="get" target="_blank" class="searchForm">
+                        <input type="text" class="searchBarInput" name="q" placeholder="Search on Google" required>
+                        <button class="googlesearch-button" type="submit"><img class="gmailsearch-icon"
+                                src="/Content-files/search-icon.png" alt="..."></button>
+                    </form>
+                </div>
+                <div class="right-nav-sub">
+                    <form action="https://accounts.google.com/" method="get" target="_blank" class="searchForm">
+                        <!-- <input type="text" class="searchBarInput" name="q" placeholder="Search on Google" required> -->
+                        <button class="googlesearch-button" type="submit"><img class="gmailsearch-icon"
+                                src="/Content-files/gmail-icon.png" alt="..."></button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- emi form -->
+    <div class="bodyContainerMain">
+        <div class="formContainerMain" id="formContainerMain">
+            <div class="formContainer">
+                <form class="formMain" id="formMain">
+                    <div class="upperbox">
+                        <div class="form">
+                            <label for="PLA">Principal Loan amount
+                                <input type="number" name="principal" id="principal" required min="0" autocomplete="off"
+                                    oninput="input()" dir="rtl">₹<div class="sideLine"></div></label>
+                        </div>
+                        <div class="form">
+                            <label for="LT">Loan Term(in months)
+                                <input type="number" name="term" id="term" required min="0" autocomplete="off"
+                                    oninput="input()" value="mnths" dir="rtl">mo<div class="sideLine"></div></label>
+                        </div>
+                        <div class="form">
+                            <label for="IR">Interest Rate(per year)
+                                <input type="number" name="rate" id="rate" required min="0" autocomplete="off"
+                                    oninput="input()" dir="rtl">%<div class="sideLine"></div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="lowerbox">
+                        <div class="resultcenter">RESULT
+
+                        </div>
+                        <div class="form">
+                            <label for="EMI">EMI
+                                <input type="number" name="emi" id="emi" required min="0" autocomplete="off" dir="auto"
+                                    dir="rtl">₹
+                                <div class="sideLine"></div>
+                            </label>
+                        </div>
+                        <div class="form">
+                            <label for="TAP">Total Amount Payable
+                                <input type="number" name="amtPayable" id="amtPayable" required min="0"
+                                    autocomplete="off" dir="auto" dir="rtl">₹<div class="sideLine"></div></label>
+                        </div>
+                        <div class="form">
+                            <label for="TID">Total Interest Due
+                                <input type="number" name="due" id="due" required min="0" autocomplete="off" dir="auto"
+                                    dir="rtl">₹<div class="sideLine"></div></label>
+                        </div>
+                    </div>
+                    <br>
+                    <span class="resetbuttonn"><input class="resetbutton" type="reset" value="↻" dir="auto"></span>
+                </form>
+            </div>
+            <br>
+            <!-- chart division -->
+            <div class="chartcenter">
+                <div id="chartDiv" class="chartDiv">
+                    <canvas id="myChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <!-- content division -->
+        <div class="contentContainerMain" id="contentContainerMain">
+            <div class="content-container">
+                <h1>EMI Calculator - Equated Monthly Installment</h1>
+                <br>
+                Created by: Sagar Bhajan
+                <br>
+                Last updated: July 21, 2023
+                <hr>
+                <ul class="table-of-contents">
+                    <li><a class="reflink" href="#what-is-emi-emi-definition"><u>What is EMI? — EMI definition</u></a>
+                    </li>
+                    <li><a class="reflink" href="#How-to-calculate-EMI?"><u>How to calculate EMI? — Equated monthly
+                                installment formula</u></a></li>
+                    <li><a class="reflink" href="#how-to-use-the-emi-calculator"><u>How to use the EMI
+                                calculator?</u></a></li>
+                </ul>
+            </div>
+            <div class="contentPart">
+                <div class="textBlock">
+                    <p>EMI calculator is an easy-to-use <strong>financial planning tool for anyone considering taking a
+                            loan
+                            👩&zwj;💻.</strong> When you take a loan from a financial institution — assuming it is not a
+                        payday loan with a high annual percentage rate — you control for how much you want the loan
+                        principal and loan tenure to be while the loan provider determines the interest rate. You must
+                        make
+                        sure you can pay back the loan without struggle. That's where EMI comes in.</p>
+                    <p>By simply inputting your loan values, this <strong>EMI calculator automatically determines how
+                            much
+                            you need to pay</strong> as your personal loan EMI ✌, car loan EMI calculator 🚗 or home
+                        loan
+                        EMI calculator 🏠, etc.</p>
+                    <p>EMI calculator is the perfect place to start when comparing different loan options for lenders
+                        😎.
+                        This
+                        article explains what EMI means and how to calculate EMI.</p>
+                    <hr>
+                    <div class="contentPart css-5ca4gx">
+                        <h2 id="what-is-emi-emi-definition">What is EMI? — EMI definition</h2>
+                        <div class="textBlock">
+                            <p><em>What does the EMI stand for?</em> EMI stands for <strong>equated monthly
+                                    installment.</strong> It
+                                is the amount you pay monthly to a loan provider until you pay off the debt. As long as
+                                you
+                                do not
+                                prepay the loan, the EMI remains fixed for the entire loan term. Thus, <strong>you can
+                                    define EMI as
+                                    the monthly installment of the principal portion of the loan amount and
+                                    interest</strong>.</p>
+                            <p>In the initial years of the loan term, a higher percentage of the EMI goes towards paying
+                                off
+                                the
+                                compounding interest. But as you repay the loan, the portion that goes towards the
+                                principal
+                                payment
+                                gradually increases because EMIs get calculated on a reducing balance method.</p>
+                            <p>It is also important to note the impact of interest rate and loan term on the equated
+                                monthly
+                                installments. <strong>High interest rates result in high EMIs and vice-versa</strong>.
+                                Similarly, a
+                                short loan term increases the EMI and vice-versa.</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <h2 id="How-to-calculate-EMI?">How to calculate EMI? — Equated monthly installment formula</h2>
+                    <p></p>
+                    <p></p>
+
+                    The formula to calculate EMI is:
+                    <p>The formula for EMI is:</p>
+                    <p class="center">
+                        <span class="mathjax">
+                            \(EMI = P \times r \times \frac{{(1+r)^n}}{{(1+r)^n-1}}\)
+                        </span>
+                    </p>
+                    where:
+                    <ul class="table-of-contents">
+                        <li><code>P</code> - Principal loan amount;</li>
+                        <li><code>r</code> - Rate of interest; and</li>
+                        <li><code>n</code> - Number of monthly installments / Loan term.</li>
+                    </ul>
+                    <p>Example:
+
+                        Assuming you borrow <code>₹10,000,000</code> from the bank at <code>10%</code> annual interest
+                        for ten years. You can
+                        estimate
+                        your
+                        monthly repayments using the EMI formula:
+                    </p>
+                    <ul class="table-of-contents">
+                        <li> <code>P = ₹10,000,000;</code></li>
+                        <li><code>r = 10% per annum = 10% / 12 months = 0.833% per month <br> = 0.833% = 0.833 / 100 =
+                            0.00833;</code>
+                        </li>
+                        <li><code>n = 10 years = (10 * 12) months = 120 months.</code></li>
+                    </ul><br>
+                    <p class="center">
+                        <span class="mathjax">
+                            \(EMI = P \times r \times \frac{{(1+r)^n}}{{(1+r)^n-1}}\)
+                        </span>
+                    </p><br>
+                    <p class="center">
+                        <span class="mathjax">
+                            \(EMI = 10,000,000 \times 0.00833 \times \frac{{(1+0.00833)^{120}}}{{(1+0.00833)^{120}-1}}\)
+                        </span>
+                    </p><br>
+                    <p class="center"><code>EMI = ₹132,150.74</code></p>
+                    <br>
+                    <p>That means that you will pay ₹132,150.74 for 120 months to repay the entire loan</p>
+                    <hr>
+                    <div class="contentPart css-5ca4gx">
+                        <h2 id="how-to-use-the-emi-calculator">How to use the EMI calculator?</h2>
+                        <div class="textBlock">
+                            <p>To evaluate the EMI for a home loan, car loan, personal loan, education loan, or any
+                                other
+                                fully amortizing loan using this calculator, all you have to do is follow these steps:
+                            </p>
+                            <ul class="table-of-contents">
+                                <li>
+                                    <p>Enter <em>Principal loan amount</em> — How much you are borrowing or already
+                                        borrowed;</p>
+                                </li>
+                                <li>
+                                    <p>Input <em>Loan term</em> — How long you have to pay back the loan; and</p>
+                                </li>
+                                <li>
+                                    <p>Provide the <em>Interest rate</em> — The annual rate of interest on the loan to
+                                        calculate the EMI amount.</p>
+                                </li>
+                                <li>
+                                    <p>You can also work out the value of any of the previous three parameters if you
+                                        already have an EMI amount in mind. The EMI calculator computes your results
+                                        either
+                                        way. Now that you know what EMI is, you can try different scenarios to find the
+                                        right EMI option that aligns with your financial goal.</p>
+                                </li>
+                            </ul>
+                            <p>As soon as any of the values are changed, the EMI calculator will generate your monthly
+                                EMI
+                                loan payment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer division -->
+    <div class="footerdiv">
+        <footer>
+            <div class="footer-content">
+                <h3 class="h3footer">Sagar Bhajan</h3>
+                <p class="footerp">A creative Frontend Web Developer with a passion for crafting captivating and
+                    user-friendly websites.
+                    Armed with strong HTML, CSS, and JavaScript skills, they blend creativity with technical expertise
+                    to
+                    deliver cutting-edge solutions. Collaborative and up-to-date with industry trends, excels in
+                    delivering
+                    visually stunning and optimized experiences</p>
+                <ul class="socials" id="footerul">
+                    <li class="footerli"><a class="footera" href="#"><span class="icon"><i
+                                    class="fa fa-facebook"></i></span></a></li>
+                    <li class="footerli"><a class="footera" href="#"><i class="fa fa-instagram"></i></a></li>
+                    <li class="footerli"><a class="footera" href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li class="footerli"><a class="footera" href="#"><i class="fa fa-youtube"></i></a></li>
+                    <li class="footerli"><a class="footera" href="http://www.linkedin.com/in/sagar-bhajan-343737128"><i
+                                class="fa fa-linkedin-square"></i></a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-menu">
+                    <ul class="f-menu" id="footerul">
+                        <li class="footerli"><a class="footera" href="#navbar"><span class="anchor">NavBar</span></a>
+                        </li>
+                        <li class="footerli"><a class="footera" href="#formMain"><span
+                                    class="anchor">Calculator</span></a>
+                        </li>
+                        <li class="footerli"><a class="footera" href="#contentContainerMain"><span
+                                    class="anchor">Content</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"
+        async></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/Content-files/EMI-Calculator.js"></script>
+</body>
+
+</html>
